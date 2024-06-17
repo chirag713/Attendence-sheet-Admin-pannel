@@ -1,0 +1,42 @@
+.restaurantlistcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.restaurantwrapper {
+    width: 45%;
+    background-color: orange;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.restauranwrapper .headingwrapper,
+.restaurantwrapper .addresswrapper {
+    padding-left: 15px;
+}
+
+.restaurantwrapper h5 {
+    margin-left: 15px;
+}
+
+.restaurantwrapper .address {
+    margin-left: 5px;
+}
+
+
+@media (max-width: 650px) {
+    .restaurantlistcontainer {
+        flex-direction: column;
+    }
+
+
+    .restaurantwrapper {
+        width: 80%;
+    }
+}
