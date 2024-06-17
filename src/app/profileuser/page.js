@@ -128,7 +128,7 @@ const Page = () => {
       </div>
       <br /><br />
       <div className=' m-2 flex justify-center '>
-        <div className='py-5 ali  min-w-[70vw] max-w-[800px] px-10  sm:px-5 ' >
+        <div className='py-5 ali  min-w-[70vw] max-w-[800px] sm:px-5 ' >
           <h1 className='text-3xl mb-3 font-bold'>{user?.name}'s Sheet  ({tasks.length})</h1>
           {tasks.map((task) => (
             <Taskcomponent task={task} key={task._id} />
