@@ -5,7 +5,8 @@ import Header from '../components/header';
 import { useRouter } from 'next/navigation';
 import { Addtask, gettaskofuser } from '../services/taskservice';
 import { toast } from 'react-toastify';
-import Taskcomponent from '../components/Taskcomponent';
+import ProfileCard from '../components/profilecard';
+import TodaysAttendence from "../components/Today'sAttendence";
 
 const Page = () => {
   const router = useRouter();
@@ -96,45 +97,55 @@ const Page = () => {
   };
 
   return (
-    <div className='bg-gray-300'>
+    <div className=' color pb-2'>
       <Header />
-      <div className=' sm:grid sm:grid-cols-12 font-bold text-2xl  '>
+      {/* <div className=' sm:grid sm:grid-cols-12 font-bold text-2xl  '>
         <div className="lg:col-span-6 lg:col-start-4  md:col-span-8 md:col-start-3 sm:col-span-10 sm:col-start-2  ">
           <h1 className='m-2'>Name: {user?.name || "No user found"}</h1>
           <h1 className='m-2'>Role: {user?.role || "Add your role"}</h1>
           <h1 className='m-2'>Joining Date: {user?.joiningdate || "Add your Joining date"}</h1>
           <h1 className='m-2'>Unique ID: {user?._id}</h1>
-          <button className='bg-green-600 py-2 px-3 rounded-lg hover:bg-green-800 m-2' onClick={updateuser}>
+          
+          
+        </div>
+      </div> */}
+      <ProfileCard />
+
+
+      <div className="flex justify-center flex-col">
+        <div className="flex justify-center ">
+          <button className='bg-green-600 ml-2 py-2 my-2 px-3 rounded-lg hover:bg-green-800 ' onClick={updateuser}>
             Update Details of {user?.name}
           </button>
-          <br />
-          <button className='bg-green-600 py-2 px-3 rounded-lg hover:bg-green-800 ml-2' onClick={toggleInputField}>
+        </div>
+
+        <div className="flex justify-center ">
+          <button className='bg-green-600 mr-2 py-2 px-3 rounded-lg hover:bg-green-800 ml-2' onClick={toggleInputField}>
             Mark Today's Absent
           </button>
-          {showInput && (
-            <div className='m-2'>
-              <input
-                type="date"
-                value={date}
-                onChange={handleDateChange}
-                className='py-2 px-3 rounded-lg m-2'
-              />
-              <button className='bg-red-600 py-2 px-3 rounded-lg hover:bg-red-800 ml-2' onClick={handleMarkAbsent}>
+        </div>
+      </div>
+      <div >
+        {showInput && (
+          <div className='m-2 flex justify-center l'>
+            <input
+              type="date"
+              value={date}
+              onChange={handleDateChange}
+              className='py-2 px-3 rounded-lg m-2'
+            />
+            <div className='flex justify-center'>
+              <button className='bg-red-600 mt-3 py-2 px-3 h-9 rounded-lg hover:bg-red-800 ml-2' onClick={handleMarkAbsent}>
                 Confirm
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
+
       <br /><br />
-      <div className=' m-2 flex justify-center '>
-        <div className='py-5 ali  min-w-[70vw] max-w-[800px] sm:px-5 ' >
-          <h1 className='text-3xl mb-3 font-bold'>{user?.name}'s Sheet  ({tasks.length})</h1>
-          {tasks.map((task) => (
-            <Taskcomponent task={task} key={task._id} />
-          ))}
-        </div>
-      </div>
+
+      <TodaysAttendence />
     </div>
   );
 };

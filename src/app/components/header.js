@@ -9,6 +9,9 @@ import { HiBars3 } from "react-icons/hi2";
 import styles from "../styles/navbar.module.css";
 import { useRouter } from 'next/navigation';
 
+
+import avatar from "../img/logo.png";
+
 const Header = () => {
 
 
@@ -56,7 +59,7 @@ const Header = () => {
         <>
             <header className={`${scrolling ? styles.scrolling : ""} ${styles.header}`}  >
                 <a href="#">
-                    <Image className={styles.logo} src="" alt='BasicBrush Studios Logo' />
+                    <Image className={styles.logo} src={avatar} alt='BasicBrush Studios Logo' />
                 </a>
                 <div>
                     <ul className={`${styles.navbar} ${navActive ? styles.active : ''}`}>
@@ -68,8 +71,8 @@ const Header = () => {
                         {
                             login ? <li onClick={logout}>Logout</li> : <li></li>
                         }
-                         {
-                            login ? <li onClick={()=>router.push("/addemployee")}>Add Employee</li> : <li></li>
+                        {
+                            login ? <li onClick={() => router.push("/addemployee")}>Add Employee</li> : <li></li>
                         }
                         <a href="#" onClick={handleNavToggle} className={styles.close}>
                             <div className="bg-red-700 rounded-full p-1 w-7 h-7 flex items-center justify-center">

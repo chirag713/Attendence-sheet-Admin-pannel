@@ -4,7 +4,7 @@ import Header from '../components/header'
 
 const page = () => {
     return (
-        <div>
+        <div className='color min-h-screen'>
             <Header />
             <div className="flex justify-center py-10">
                 <SignupForm />

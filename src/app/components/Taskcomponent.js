@@ -33,12 +33,12 @@ const Taskcomponent = ({ task }) => {
         score:task.score
     });
     return (
-        <div className={`bg-gray-200 my-3  shadow-lg mb-1 rounded `}>
+        <div className={`  my-3 shadow-lg mb-1 rounded hoverable-div `} style={{ border: '1px solid black' }} >
             <div className='p-3  '>
                 <div className="flex justify-between">
                     <h1 className='text-2xl font-semibold '> Date : {task.addeddate.substring(0, 10)}</h1>
                     <div className="flex">
-                        <span className=' shadow-lg h-10  cursor-pointer rounded-full p-3 hover:bg-gray-400 mr-1 ' onClick={() => showedit(task._id)} ><MdEdit /></span>    
+                        <span className=' shadow-lg h-10  cursor-pointer rounded-full p-3 hover:bg-blue-400 mr-1 ' onClick={() => showedit(task._id)} ><MdEdit /></span>    
                     </div>
                 </div>
                 <div className="flex justify-between mt-3">
@@ -47,18 +47,18 @@ const Taskcomponent = ({ task }) => {
                 </div>
                 <div className="flex justify-between mt-3">
                     <p className='text-left font-semibold mb-2'>  Detail : <span>{conten}</span></p>
-                    
+                   
                 </div>
-    <p className='text-right font-bold mb-2 pl-2'>Performance : <span>{taskscore}</span></p>
+                <p className='text-right font-bold mb-2 pl-2'>Performance : <span>{taskscore}</span></p>
             </div>
 
             {editing ?
                 <div>
-                    <form action="#" className='pb-5' >
+                    <form action="#" className='pb-5 mx-1' >
                         <div className="mt-4">
                             <label htmlFor="task_task" className='block mb-2 text-2xl'>Performance</label>
                             <input type="text"
-                                className='w-full p-3 rounded-full text-white bg-gray-800 focus:ring-gray-400 border border-gray-600'
+                                className='w-full p-2  rounded-full text-white bg-gray-800 focus:ring-gray-400 border border-gray-600'
                                 id="task_task"
                                 name="task_task"
                                 placeholder='Give score'

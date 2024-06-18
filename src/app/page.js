@@ -16,7 +16,7 @@ export default function Home() {
   }, [router]);
 
   return (
-    <main >
+    <main className="color" >
       <Header />
       <div className="flex justify-center py-10">
         <SignForm />

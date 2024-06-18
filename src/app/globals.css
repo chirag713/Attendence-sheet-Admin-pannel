@@ -23,3 +23,16 @@
     text-wrap: balance;
   }
 }
+
+.hoverable-div {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hoverable-div:hover {
+  transform: translateY(-10px);
+}
+
+
+.color{
+  background-color: #E0F7FA;
+}

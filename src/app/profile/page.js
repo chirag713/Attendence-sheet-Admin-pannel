@@ -12,14 +12,14 @@ const page = () => {
     const [user, setuser] = useState([]);
 
 
-    
+
 
 
 
     useEffect(() => {
         showuser();
-        const temp=localStorage.getItem("username");
-        if(!temp){
+        const temp = localStorage.getItem("username");
+        if (!temp) {
             router.push("/");
         }
     }, []);
@@ -41,14 +41,18 @@ const page = () => {
 
     return (
 
-        
+
         <div>
 
-            <Header/>
+            <Header />
             <div className={styles.restaurantlistcontainer}>
                 {
                     user.map((item) => (
-                        <div key={item._id} className={styles.restaurantwrapper} onClick={() => saveDetail(item)} >
+                        <div
+                            key={item._id}
+                            className={`${styles.restaurantwrapper} hoverable-div`}
+                            onClick={() => saveDetail(item)}
+                        >
                             <div className={styles.addresswrapper}>
                                 <h3>{item.name}</h3>
                                 <div>Email : {item.email}  </div>
