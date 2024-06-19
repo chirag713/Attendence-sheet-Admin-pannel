@@ -51,7 +51,7 @@ const TodaysAttendence = () => {
 
   const check = (task) => {
 
-    if(task.score==="Absent") return 1;
+    //if(task.score==="Absent") return 1;
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
