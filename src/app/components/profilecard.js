@@ -38,13 +38,9 @@ const ProfileCard = () => {
           <div className={styles.borderLeft}></div>
         </div>
         <div className={styles.cardContent}>
-          <Image className={styles.avatar} alt="Avatar" src={avatar} style={
-            {
-              width: '50%',
-              height: "200px"
-            }
+          {
+            user?.profileurl ? <img src={user.profileurl} className={styles.avatar} alt="Avatar" /> : <Image className={styles.avatar} alt="Avatar" src={avatar} />
           }
-          />
           <p className={styles.username}>{user?.name || "No user found"} </p>
           <p className={styles.designation}>{user?.role || "Add Your Role"}</p>
           <p className={styles.bio}>Joining Date: {user?.joiningdate || "Add your Joining date"}</p>

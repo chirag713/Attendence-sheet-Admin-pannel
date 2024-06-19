@@ -44,7 +44,7 @@ const UpdateUser = () => {
             });
         }
     }
-
+    
     const [data, setData] = useState({
         email: "",
         name: "",
