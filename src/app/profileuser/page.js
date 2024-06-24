@@ -15,6 +15,8 @@ const Page = () => {
   const [date, setDate] = useState('');
   const [tasks, setTasks] = useState([]);
 
+  const[temp , settemp]=useState('');
+
   useEffect(() => {
     let userData = localStorage.getItem("username");
     if (userData) {
@@ -62,12 +64,16 @@ const Page = () => {
     setShowInput(!showInput);
   };
 
-  const handleDateChange = (event) => {
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  };
 
-    setDate(event.target.value);
+  const handleDateChange = (event) => {
+    settemp(event.target.value)
+    setDate(formatDate(event.target.value));
   };
   const handleMarkAbsent = async () => {
-
 
 
     const taskdata = {
@@ -81,12 +87,9 @@ const Page = () => {
         position: "top-center"
       });
 
-
       gettask();
 
       setShowInput(!showInput);
-
-
 
     } catch (error) {
       toast.error("Something went wrong !!..", {
@@ -99,18 +102,9 @@ const Page = () => {
   return (
     <div className=' color pb-2'>
       <Header />
-      {/* <div className=' sm:grid sm:grid-cols-12 font-bold text-2xl  '>
-        <div className="lg:col-span-6 lg:col-start-4  md:col-span-8 md:col-start-3 sm:col-span-10 sm:col-start-2  ">
-          <h1 className='m-2'>Name: {user?.name || "No user found"}</h1>
-          <h1 className='m-2'>Role: {user?.role || "Add your role"}</h1>
-          <h1 className='m-2'>Joining Date: {user?.joiningdate || "Add your Joining date"}</h1>
-          <h1 className='m-2'>Unique ID: {user?._id}</h1>
-          
-          
-        </div>
-      </div> */}
-      <ProfileCard />
 
+      <br />
+      <ProfileCard />
 
       <div className="flex justify-center flex-col">
         <div className="flex justify-center ">
@@ -130,7 +124,7 @@ const Page = () => {
           <div className='m-2 flex justify-center l'>
             <input
               type="date"
-              value={date}
+              value={temp}
               onChange={handleDateChange}
               className='py-2 px-3 rounded-lg m-2'
             />
@@ -142,8 +136,6 @@ const Page = () => {
           </div>
         )}
       </div>
-
-      <br /><br />
 
       <TodaysAttendence />
     </div>

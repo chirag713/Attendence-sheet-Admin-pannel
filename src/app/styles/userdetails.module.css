@@ -7,7 +7,7 @@
 }
 
 .restaurantwrapper {
-    width: 45%;
+    width: 47%;
     background-color: orange;
     margin: 10px;
     padding: 10px;
@@ -18,7 +18,7 @@
 
 .restauranwrapper .headingwrapper,
 .restaurantwrapper .addresswrapper {
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .restaurantwrapper h5 {
@@ -30,14 +30,14 @@
 }
 
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
     .restaurantlistcontainer {
         flex-direction: column;
     }
 
 
     .restaurantwrapper {
-        width: 90%;
+        width: 95%;
         padding: 5px;
     }
 }

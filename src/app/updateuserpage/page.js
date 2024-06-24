@@ -26,8 +26,6 @@ const UpdateUser = () => {
     const updateuserform = async (event) => {
         event.preventDefault();
 
-
-
         try {
             const result = await Updateuser(user?._id, data);
             toast.success("User updated successfully!", {
@@ -64,71 +62,93 @@ const UpdateUser = () => {
     }, [user]);
 
     return (
-        <div className=' min-h-screen color '>
+        <div className='min-h-screen color bg-gray-100'>
             <Header/>
-            <div className='container grid grid-cols-12 '>
-                <div className="col-span-10 col-start-2 lg:col-span-4 lg:col-start-5 md:col-span-6 md:col-start-4 sm:col-span-8 sm:col-start-3">
-                    <div className='py-5'>
-                        <h1 className='text-3xl text-center'>Updation Form</h1>
-                        <form action="#" className='mt-5' onSubmit={updateuserform}>
-                            <div className='mt-3'>
-                                <label htmlFor="user_email" className='block mb-2 text-2xl font-medium'>E-mail</label>
-                                <input className='w-full p-3 text-white rounded-3xl ps-2 bg-gray-800 focus:ring-gray-400 border border-gray-600' type="email" placeholder="Enter Employee's E-mail" id="user_email"
-                                    value={data.email}
-                                />
-                            </div>
-                            <div className='mt-3'>
-                                <label htmlFor="user_name" className='block mb-2 text-2xl font-medium'>Name</label>
-                                <input className='w-full p-3 text-white rounded-3xl ps-2 bg-gray-800 focus:ring-gray-400 border border-gray-600' type="text" placeholder="Enter Employee's Name" id="user_name"
-                                    onChange={(event) => {
-                                        setData({
-                                            ...data,
-                                            name: event.target.value,
-                                        });
-                                    }}
-                                    value={data.name}
-                                />
-                            </div>
-                            <div className='mt-3'>
-                                <label htmlFor="user_joiningdate" className='block mb-2 text-2xl font-medium'>Joining Date</label>
-                                <input className='w-full p-3 text-white rounded-3xl ps-2 bg-gray-800 focus:ring-gray-400 border border-gray-600' type="text" placeholder="Enter Employee's Joining Date" id="user_joiningdate"
-                                    onChange={(event) => {
-                                        setData({
-                                            ...data,
-                                            joiningdate: event.target.value,
-                                        });
-                                    }}
-                                    value={data.joiningdate}
-                                />
-                            </div>
-                            <div className='mt-3'>
-                                <label htmlFor="user_role" className='block mb-2 text-2xl font-medium'>Role</label>
-                                <input className='w-full p-3 text-white rounded-3xl ps-2 bg-gray-800 focus:ring-gray-400 border border-gray-600' type="text" placeholder="Enter Employee's Role" id="user_role"
-                                    onChange={(event) => {
-                                        setData({
-                                            ...data,
-                                            role: event.target.value,
-                                        });
-                                    }}
-                                    value={data.role}
-                                />
-                            </div>
-                            <div className='mt-4 flex justify-center'>
-                                <button type='submit' className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>Update Employee</button>
-                                <button type='button' className='text-white bg-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
-                                    onClick={() => {
-                                        setData({
-                                            name: user.name || "",
-                                            role: user.role || "",
-                                            email: user.email || "",
-                                            joiningdate: user.joiningdate || ""
-                                        });
-                                    }}
-                                >Reset</button>
-                            </div>
-                            {/* {JSON.stringify(data)} */}
-                        </form>
-                    </div>
+            <div className='container mx-auto p-4'>
+                <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+                    <h1 className='text-3xl text-center mb-6'>Updation Form</h1>
+                    <form onSubmit={updateuserform}>
+                        <div className='mb-4'>
+                            <label htmlFor="user_email" className='block text-lg font-medium mb-2'>E-mail</label>
+                            <input
+                                className='w-full p-3 rounded-lg border border-gray-300 focus:ring focus:ring-blue-500 focus:outline-none'
+                                type="email"
+                                placeholder="Enter Employee's E-mail"
+                                id="user_email"
+                                value={data.email}
+                            />
+                        </div>
+                        <div className='mb-4'>
+                            <label htmlFor="user_name" className='block text-lg font-medium mb-2'>Name</label>
+                            <input
+                                className='w-full p-3 rounded-lg border border-gray-300 focus:ring focus:ring-blue-500 focus:outline-none'
+                                type="text"
+                                placeholder="Enter Employee's Name"
+                                id="user_name"
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        name: event.target.value,
+                                    });
+                                }}
+                                value={data.name}
+                            />
+                        </div>
+                        <div className='mb-4'>
+                            <label htmlFor="user_joiningdate" className='block text-lg font-medium mb-2'>Joining Date</label>
+                            <input
+                                className='w-full p-3 rounded-lg border border-gray-300 focus:ring focus:ring-blue-500 focus:outline-none'
+                                type="text"
+                                placeholder="Enter Employee's Joining Date"
+                                id="user_joiningdate"
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        joiningdate: event.target.value,
+                                    });
+                                }}
+                                value={data.joiningdate}
+                            />
+                        </div>
+                        <div className='mb-4'>
+                            <label htmlFor="user_role" className='block text-lg font-medium mb-2'>Role</label>
+                            <input
+                                className='w-full p-3 rounded-lg border border-gray-300 focus:ring focus:ring-blue-500 focus:outline-none'
+                                type="text"
+                                placeholder="Enter Employee's Role"
+                                id="user_role"
+                                onChange={(event) => {
+                                    setData({
+                                        ...data,
+                                        role: event.target.value,
+                                    });
+                                }}
+                                value={data.role}
+                            />
+                        </div>
+                        <div className='flex justify-center mt-6'>
+                            <button
+                                type='submit'
+                                className='bg-blue-600 text-white font-medium rounded-lg text-sm px-5 py-2.5 mr-2 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300'
+                            >
+                                Update Employee
+                            </button>
+                            <button
+                                type='button'
+                                className='bg-gray-500 text-white font-medium rounded-lg text-sm px-5 py-2.5 mr-2 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300'
+                                onClick={() => {
+                                    setData({
+                                        name: user.name || "",
+                                        role: user.role || "",
+                                        email: user.email || "",
+                                        joiningdate: user.joiningdate || ""
+                                    });
+                                }}
+                            >
+                                Reset
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

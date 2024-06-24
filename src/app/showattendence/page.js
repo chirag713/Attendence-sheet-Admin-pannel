@@ -55,6 +55,11 @@ const page = () => {
     }, [user])
 
 
+    const showthistask=(taskid)=>{
+        router.push("/showtask/"+taskid);
+    }
+
+
 
 
 
@@ -68,7 +73,16 @@ const page = () => {
                     <div className='py-5 ali  min-w-[70vw] max-w-[800px] sm:px-5 ' >
                         <h1 className='text-3xl mb-3 font-bold'>{user?.name}'s Sheet  ({tasks.length})</h1>
                         {tasks.map((task) => (
-                            <Taskcomponent task={task} key={task._id} />
+                            <div onClick={() => showthistask(task._id)} key={task._id} className='bg-white p-4 mb-4 hoverable-div rounded-lg shadow-md border border-gray-300'>
+                                <div className="flex justify-between  items-center">
+                                    <h2 className='text-xl font-semibold'>Date: {task.addeddate.substring(0, 10)}</h2>
+                                    <p className='text-right font-bold'><span>
+                                        {
+                                            task.score === "Absent" ? "Absent" : "Present"
+                                        }
+                                    </span></p>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
