@@ -24,6 +24,7 @@ const Page = () => {
         const fetchTaskData = async () => {
             try {
                 const resultTask = await gettodaytask();
+                console.log(resultTask);
                 setTask(resultTask);
             } catch (error) {
                 console.log("Error fetching task data:", error);
