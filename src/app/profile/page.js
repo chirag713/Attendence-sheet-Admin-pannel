@@ -15,15 +15,24 @@ const Page = () => {
     });
 
     useEffect(() => {
-        // Set the date to today's date in dd/mm/yyyy format
-        const today = new Date().toLocaleDateString('en-GB', {
+        const now = new Date();
+        const isBefore6PM = now.getHours() < 18;
+
+        if (isBefore6PM) {
+            // Subtract one day if the time is before 6 PM
+            now.setDate(now.getDate() - 1);
+        }
+
+        // Set the date in dd-mm-yyyy format
+        const formattedDate = now.toLocaleDateString('en-GB', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric'
         }).replace(/\//g, '-');
+
         setData(prevData => ({
             ...prevData,
-            today: today
+            today: formattedDate
         }));
 
         const fetchUserData = async () => {
