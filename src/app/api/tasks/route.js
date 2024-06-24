@@ -61,23 +61,3 @@ export async function POST(request) {
 }
 
 
-export async function GET(request) {
-    let tasks = [];
-    try {
-        // Get today's date in the format dd/mm/yyyy
-        const today = new Date().toLocaleDateString('en-GB');
-        console.log(today);
-
-        // Find tasks where addedate is today's date
-        tasks = await Task.find({ addeddate: today });
-
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({
-            message: "Failed to fetch tasks",
-            status: false
-        });
-    }
-
-    return NextResponse.json(tasks);
-}

@@ -10,8 +10,22 @@ const Page = () => {
     const router = useRouter();
     const [user, setUser] = useState([]);
     const [task, setTask] = useState([]);
+    const [data, setData] = useState({
+        today: ""
+    });
 
     useEffect(() => {
+        // Set the date to today's date in dd/mm/yyyy format
+        const today = new Date().toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        }).replace(/\//g, '-');
+        setData(prevData => ({
+            ...prevData,
+            today: today
+        }));
+
         const fetchUserData = async () => {
             try {
                 const resultUser = await Getuser();
@@ -21,24 +35,28 @@ const Page = () => {
             }
         };
 
-        const fetchTaskData = async () => {
-            try {
-                const resultTask = await gettodaytask();
-                console.log(resultTask);
-                setTask(resultTask);
-            } catch (error) {
-                console.log("Error fetching task data:", error);
-            }
-        };
-
         fetchUserData();
-        fetchTaskData();
 
         const temp = localStorage.getItem("username");
         if (!temp) {
             router.push("/");
         }
     }, [router]);
+
+    useEffect(() => {
+        if (data.today) {
+            const fetchTaskData = async () => {
+                try {
+                    const resultTask = await gettodaytask(data);
+                    setTask(resultTask);
+                } catch (error) {
+                    console.log("Error fetching task data:", error);
+                }
+            };
+
+            fetchTaskData();
+        }
+    }, [data]);
 
     const saveDetail = (item) => {
         localStorage.setItem('username', JSON.stringify(item));
