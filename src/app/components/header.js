@@ -68,6 +68,9 @@ const Header = () => {
                         {
                             login ? <li onClick={() => router.push("/profile")}>Profile</li> : <li onClick={() => router.push("/")}>Login</li>
                         }
+                        {/* {
+                            login ? <li onClick={() => router.push("/showtoday")}>Today's Attendence</li> : <></>
+                        } */}
                         {
                             login ? <li onClick={logout}>Logout</li> : <li></li>
                         }

@@ -28,3 +28,9 @@ export async function gettask(taskId) {
     const result = await httpaxious.get(`/api/gettask/${taskId}`).then((response) => response.data);
     return result
 }
+
+
+export async function gettodaytask() {
+    const result = await httpaxious.get(`/api/tasks`).then((response) => response.data);
+    return result
+}
