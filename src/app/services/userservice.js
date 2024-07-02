@@ -22,3 +22,9 @@ export async function Updateuser(userid , data) {
     const result= await httpaxious.put(`/api/user/${userid}`,data).then((response) => response.data);
     return result
 }
+
+
+export async function deleteuser(userid ) {
+    const result= await httpaxious.delete(`/api/user/${userid}`).then((response) => response.data);
+    return result
+}

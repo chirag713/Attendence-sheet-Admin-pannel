@@ -38,7 +38,7 @@ const Page = () => {
         const fetchUserData = async () => {
             try {
                 const resultUser = await Getuser();
-                setUser(resultUser);
+                setUser(resultUser.reverse());
             } catch (error) {
                 console.log("Error fetching user data:", error);
             }

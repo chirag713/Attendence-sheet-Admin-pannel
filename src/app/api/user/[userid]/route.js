@@ -2,46 +2,75 @@ import { ConnectDb } from "@/app/helper/db";
 import { User } from "@/app/modals/user";
 import { NextResponse } from "next/server";
 
-
 ConnectDb();
 
 export async function PUT(request, { params }) {
-
     try {
-
         const { userid } = params;
-        const { email , name , joiningdate , role } = await request.json();
+        const { email, name, joiningdate, role } = await request.json();
 
+        // Find the user by ID
+        let user = await User.findById(userid);
 
-        // Find the task by ID
-        let taska = await User.findById(userid);
-
-        if (!taska) {
+        if (!user) {
             return NextResponse.json({
                 success: false,
-                message: "Task not found",
+                message: "User not found",
             }, {
                 status: 404, // Not Found
             });
         }
 
-        console.log(joiningdate);
+        // Update user properties
+        user.name = name;
+        user.email = email;
+        user.joiningdate = joiningdate;
+        user.role = role;
 
-        // Update task properties
-        taska.name=name;
-        taska.email=email;
-        taska.joiningdate=joiningdate;
-        taska.role=role
+        // Save the updated user to the database
+        const updatedUser = await user.save();
 
-        // Save the updated task to the database
-
-        console.log(taska);
-        const updatedTask = await taska.save();
-
-        return NextResponse.json(updatedTask);
+        return NextResponse.json(updatedUser);
 
     } catch (error) {
         console.log(error);
-        return getresponsemessage("Error in updating !!..", 500, false);
+        return NextResponse.json({
+            success: false,
+            message: "Error in updating",
+        }, {
+            status: 500, // Internal Server Error
+        });
+    }
+}
+
+export async function DELETE(request, { params }) {
+    try {
+        const { userid } = params;
+
+        // Find the user by ID and delete
+        const user = await User.findByIdAndDelete(userid);
+
+        if (!user) {
+            return NextResponse.json({
+                success: false,
+                message: "User not found",
+            }, {
+                status: 404, // Not Found
+            });
+        }
+
+        return NextResponse.json({
+            success: true,
+            message: "User deleted successfully",
+        });
+
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            success: false,
+            message: "Error in deleting",
+        }, {
+            status: 500, // Internal Server Error
+        });
     }
 }

@@ -7,6 +7,7 @@ import { Addtask, gettaskofuser } from '../services/taskservice';
 import { toast } from 'react-toastify';
 import ProfileCard from '../components/profilecard';
 import TodaysAttendence from "../components/Today'sAttendence";
+import { deleteuser } from '../services/userservice';
 
 const Page = () => {
   const router = useRouter();
@@ -99,6 +100,20 @@ const Page = () => {
 
   };
 
+
+  const deleteid=async()=>{
+    console.log(user._id);
+    try {
+      const result = await deleteuser(user._id);
+      toast.success("Client successfully removed " ,{
+        position: "top-center"
+      });
+      router.push("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className=' color pb-2'>
       <Header />
@@ -118,6 +133,7 @@ const Page = () => {
             Mark Today's Absent
           </button>
         </div>
+        
       </div>
       <div >
         {showInput && (
@@ -136,6 +152,12 @@ const Page = () => {
           </div>
         )}
       </div>
+
+      <div className="flex justify-center ">
+          <button className='bg-green-600 mt-3 mr-2 py-2 px-3 rounded-lg hover:bg-green-800 ml-2' onClick={deleteid}>
+            Delete employee Id
+          </button>
+        </div>
 
       <TodaysAttendence />
     </div>
